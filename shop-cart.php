@@ -10,6 +10,9 @@
   $clientID = $_SESSION['id'];
 
   if(isset($_POST['update'])) {
+      $ifSelected = mysqli_query($connection, "TRUNCATE TABLE total");
+
+      if($ifSelected) {
 
       // $quantity = $_POST['quantity'];
       // foreach($quantity as $quan) {
@@ -66,7 +69,7 @@
             $serviceTotal += $servicesPrice;
         }
 
-        // $allTotal += $totalTransaction + $serviceTotal;
+        $allTotal = $totalTransaction + $serviceTotal;
 
           // $OverAlltotalPrice = $productPrice + $serviceTotal;
           $_SESSION['OveerAlltotalPrice'] = $OverAlltotalPrice;
@@ -74,7 +77,7 @@
         }
 
         $isProcessing = true;
-        $order = "INSERT INTO total(productID, servicesID, clientID, transactionID, total, quantity , isProcessing) values('$productIDConverted','$conServ', '$clientID', '$transactionIDConvert','$totalTransaction', '$quantityLabelConvert', '$isProcessing')";
+        $order = "INSERT INTO total(productID, servicesID, clientID, transactionID, total, quantity , isProcessing) values('$productIDConverted','$conServ', '$clientID', '$transactionIDConvert','$allTotal', '$quantityLabelConvert', '$isProcessing')";
         $result = mysqli_query($connection, $order);
     
         if($result) {
@@ -90,30 +93,13 @@
 
 
       } else {
-        $selectProduct = "SELECT * FROM transaction WHERE clientID = '$clientID'";
-        $query = mysqli_query($connection, $selectProduct);
-
-        $OverAlltotalPriceElse = 0;
-        while($row = mysqli_fetch_assoc($query)) {
-          $productID[] = $row['productID'];
-          $productIDConvertedElse = implode(',', $productID);
-
-          $transactionID = $row['id'];
-          // $transactionIDConvert = implode(',', $transactionID); 
-
+        $noServices = mysqli_query($connection, "SELECT * FROM transaction WHERE clientID = '$clientID'");
+        while($noServicesRows = mysqli_fetch_assoc($noServices)) {
+          
         }
 
-        foreach($productID as $proID) {
-          $selectTotal = "SELECT * FROM package WHERE id = '$proID'";
-          $exe = mysqli_query($connection, $selectTotal);
-
-          while($package = mysqli_fetch_assoc($exe)) {
-            $price = $package['Price'];
-            $productPriceNot = $price;
-            // $productPrice = $productPriceNot * $quantityTotal;
-          }
-        }
       }    
+    }
 
       // $total = $packagePrice + $servicesPrice;
       //   echo $total;
