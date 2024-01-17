@@ -67,7 +67,7 @@
                 $_SESSION['password'] = $resultStaff['Password'];
                 $_SESSION['name'] = $resultStaff['Name'];
                 $_SESSION['role'] = $resultStaff['Role'];
-                $_SESSION['loggedManager'] = true;
+                $_SESSION['loggedStaff'] = true;
 
                 header("Location: ../admin/html/index.php");
 

@@ -2,7 +2,7 @@
 
     require_once($_SERVER['DOCUMENT_ROOT']. "\connection.php");
     session_start();
-    if(isset($_SESSION['loggedAdmin']) == false && isset($_SESSION['loggedManager']) == false) {
+    if(isset($_SESSION['loggedAdmin']) == false && isset($_SESSION['loggedManager']) == false && isset($_SESSION['loggedStaff']) == false) {
         header("Location: ../index.php");
     }
 
