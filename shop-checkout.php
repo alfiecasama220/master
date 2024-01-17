@@ -2,7 +2,6 @@
 
   require_once("connection.php");
   session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +81,7 @@
   <?php require_once("header.php") ?>
 
   <!-- Start main-content -->
+  <form method="POST" action="order.php">
   <div class="main-content-area">
     <!-- Section: page title -->
     <section class="page-title layer-overlay overlay-dark-9 section-typo-light bg-img-center" data-tm-bg-img="images/bg/bg1.jpg">
@@ -121,14 +121,14 @@
                       </div>
                       <div class="form-group">
                         <label for="checkuot-form-email">Email Address</label>
-                        <input id="checkuot-form-email" type="email" class="form-control" placeholder="Email Address" required>
+                        <input id="checkuot-form-email" type="email" name="email" class="form-control" placeholder="Email Address" required>
                       </div>
                       <div class="form-group">
                         <label for="checkuot-form-address">Address</label>
-                        <input id="checkuot-form-address" type="text" class="form-control" placeholder="Street address" required>
+                        <input id="checkuot-form-address" type="text" name="address" class="form-control" placeholder="Street address" required>
                       </div>
                       <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
+                        <input type="text" name="apartment" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
                       </div>
                     </div>
                   </div>
@@ -137,7 +137,7 @@
               <div class="col-md-6">
                 <h3>Additional information</h3>
                 <label for="order_comments" class="">Order notes&nbsp;<span class="optional">(optional)</span></label>
-                <textarea id="order_comments" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." rows="3"></textarea>
+                <textarea id="order_comments" name="message" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." rows="3"></textarea>
               </div>
               <div class="col-md-12 mt-30">
                 <h3>Your package</h3>
@@ -296,7 +296,7 @@
                 <div class="w-100 border d-flex">
                   <div class="col-sm"></div>
                   <div class="col-sm w-100 p-3 text-right"><h5 class="text-dark">Order Total: </h5></div>
-                  <div class="col-sm d-flex justify-content-center align-items-center border bg-theme-colored1"><h5 class="text-white">₱ <?php echo number_format($total); ?></h5></div>
+                  <div class="col-sm d-flex justify-content-center align-items-center border bg-theme-colored1"><h5 class="text-white">₱ <?php if(isset($total)) {echo number_format($total);} ?></h5></div>
                 </div>
               </div>
               <div class="col-md-12 mt-60">
@@ -307,27 +307,20 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item p-30">
                       <label>
-                        <input type="radio" name="optionsRadios" value="option1" checked>
-                        <strong>Direct Bank Transfer</strong>
+                        <input type="radio" name="paymentMethod" value="0" checked>
+                        <strong>Cash on delivery</strong>
                       </label>
-                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      <p class="mb-0">is a payment option during online checkout, allowing customers to pay for their orders in cash or by card upon delivery. After selecting COD, customers receive an order confirmation and the delivery person collects the payment at the time of delivering the product. It's crucial to maintain clear communication, transparent policies, and implement security measures to ensure a seamless and secure COD process.</p>
                     </li>
                     <li class="list-group-item p-30">
                       <label>
-                        <input type="radio" name="optionsRadios" value="option2" checked>
-                        <strong>Cheque Payment</strong>
+                        <input type="radio" name="paymentMethod" value="1" checked>
+                        <strong>Gcash</strong>
                       </label>
-                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      <p class="mb-0">is a mobile wallet and financial services app that enables users to manage their money, make online transactions, and pay bills using their smartphones. Linked to a user's mobile number, GCash offers a convenient and secure way to transfer funds, purchase goods and services, and access various financial services, contributing to the digitization of financial transactions in many regions. Its user-friendly interface and widespread acceptance make GCash a popular choice for individuals seeking a versatile and accessible digital payment solution.</p>
                     </li>
                     <li class="list-group-item p-30">
-                      <label>
-                        <input type="radio" name="optionsRadios" value="option3" checked>
-                        <strong>PayPal Payment</strong>
-                      </label>
-                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                    </li>
-                    <li class="list-group-item p-30">
-                      <a href="#" class="btn btn-theme-colored1 btn-checkout">Place Order</a>
+                      <button name="placeOrder" class="btn btn-theme-colored1 btn-checkout">Place Order</button>
                     </li>
                   </ul>
                 </div>
@@ -338,6 +331,7 @@
       </div>
     </section>
   </div>
+  </form>
   <!-- end main-content -->
 
   <!-- Footer -->

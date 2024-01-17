@@ -19,6 +19,7 @@
       //   echo $quantityTotal += $quan;
       // }
 
+      $totalTransaction = 0;
       if(!empty($_POST['services'])) {
 
         // echo $quantity; 
@@ -30,7 +31,7 @@
         $query = mysqli_query($connection, $selectProduct);
 
         $OverAlltotalPrice = 0;
-        $totalTransaction = 0;
+        
         while($row = mysqli_fetch_assoc($query)) {
           $productID[] = $row['productID'];
           $productIDConverted = implode(',', $productID);
@@ -94,8 +95,37 @@
 
       } else {
         $noServices = mysqli_query($connection, "SELECT * FROM transaction WHERE clientID = '$clientID'");
-        while($noServicesRows = mysqli_fetch_assoc($noServices)) {
+
+        while($row = mysqli_fetch_assoc($noServices)) {
+          $productID[] = $row['productID'];
+          $productIDConverted = implode(',', $productID);
+
+          $transactionIDelse[] = $row['id'];
+          $transactionIDConvertelse = implode(',', $transactionIDelse);
+
           
+
+          $idelse = $row['id'];
+          
+          
+
+        }
+
+        $totalTransaction = 0;  
+
+        $selectTotal = mysqli_query($connection, "SELECT * FROM transaction WHERE clientID = '$clientID'");
+        while($selectRow = mysqli_fetch_assoc($selectTotal)) {
+          $quantityLabelelse[] = $row['quantity'];
+          $quantityLabelConvert = implode(',', $quantityLabelelse);
+
+          $totalTransaction += $selectRow['total'];
+        }
+
+        $isProcessing = true;
+
+        $queryInsert = mysqli_query($connection, "INSERT INTO total(productID, transactionID, clientID, quantity, total, isProcessing) values('$productIDConverted','$transactionIDConvertelse' , '$clientID' ,'$quantityLabelConvert', '$totalTransaction', '$isProcessing')");
+        if($queryInsert) {
+          header("Location: shop-cart.php");
         }
 
       }    

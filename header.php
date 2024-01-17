@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="menu-item">
-                      <a href="<?php $_SERVER['HTTP_HOST'] ?>">Services</a>
+                      <a href="<?php $_SERVER['HTTP_HOST'] ?>">Packages</a>
                     </li>
                     
                     <li class="menu-item"><a href="#">About us</a>

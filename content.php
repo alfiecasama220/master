@@ -47,7 +47,7 @@
                                 <div class="product-header">
                                 <div class="thumb image-swap">
                                     <a href="transaction.php?ID=<?php echo $id; ?>"><img src="schedules/<?php echo $image; ?>" class="product-main-image img-responsive img-fullwidth" width="300" height="300" alt="product"></a>
-                                    <a href="transaction.php?ID=<?php echo $id; ?>"><img src="schedules/<?php echo $image; ?>" class="product-hover-image img-responsive img-fullwidth" alt="product"></a>
+                                    <a href="transactionw.php?ID=<?php echo $id; ?>"><img src="schedules/<?php echo $image; ?>" class="product-hover-image img-responsive img-fullwidth" alt="product"></a>
                                 </div>
                                 <div class="product-button-holder">
                                     <ul class="shop-icons">

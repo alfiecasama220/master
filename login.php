@@ -181,7 +181,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="form_password">Password</label>
-                  <input id="form_password" name="form_password" class="form-control" type="text" required>
+                  <input id="form_password" name="form_password" class="form-control" type="password" required>
                 </div>
               </div>
               <div class="checkbox pull-left mt-15">
