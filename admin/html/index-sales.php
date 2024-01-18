@@ -2,6 +2,34 @@
 
     require_once($_SERVER['DOCUMENT_ROOT'] . "\connection.php");
     session_start();
+    
+        
+        if(isset($_GET['mode'])) {
+            if(isset($_GET['ID'])) {
+                $id = $_GET['ID'];
+            }
+
+            $mode = $_GET['mode'];
+            if($mode == "accept") {
+                $success = 1;
+                
+                $database = mysqli_query($connection, "UPDATE finalorder SET status = '$success' WHERE id='$id'");
+                if($database) {
+                    $self = $_SERVER['PHP_SELF'];
+                }
+            }
+
+            if($mode == "reject") {
+                $reject = 0;
+                $database = mysqli_query($connection, "UPDATE finalorder SET status = '$reject' WHERE id='$id'");
+            }
+
+            if($mode == "delete") {
+               $delete = mysqli_query($connection, "DELETE FROM finalorder WHERE id = '$id'");  
+            }
+            
+        }
+
 
 ?>
 
@@ -153,9 +181,9 @@
                                                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"> 
                                                                         <ul class="link-list-plain">
-                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "?mode=" . "1" ?>">Accept</a></li>
-                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "?mode=" . "0" ?>">Reject</a></li>
-                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "?mode=" . "2" ?>">Delete</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "accept" . "&" . "ID=" .  $id; ?>">Accept</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "reject" . "&" . "ID=" .  $id; ?>">Reject</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "delete" ?>">Delete</a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
