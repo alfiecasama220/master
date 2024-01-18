@@ -162,18 +162,30 @@
                         $image = $rowPackage['Image'];
                         $Title = $rowPackage['Title'];
                         $desc = $rowPackage['Description'];
+                        $price = $rowPackage['Price'];
+
                         
-                        $selectAllTransaction = mysqli_query($connection, "SELECT * FROM transaction WHERE clientID = '$clientID' and productID = '$proID'");
+                        $selectAllTransaction = mysqli_query($connection, "SELECT * FROM total WHERE clientID = '$clientID'");
+
                         while($totalTransactions = mysqli_fetch_assoc($selectAllTransaction)) {
                           $quantity = $totalTransactions['quantity'];
+                          $quantity = explode(",", $quantity);
                           $totalTrans = $totalTransactions['total'];
+                          
+                          
+
+                          
+                               
+                          // $totalData = $price * $quantity;
+                          // echo $totalData;
+                          // (<?php echo $quantity;)
                           ?>
                           <tr>
-                          <td class="product-thumbnail"><a href="shop-product-details.html"><img alt="package" src="schedules/<?php echo $image; ?>"></a></td>
-                          <td><a href="#"><?php echo $Title; ?>(<?php echo $quantity; ?>x)</a></td>
-                          <td><?php echo $desc; ?></td>
-                          <td><span class="amount">₱ <?php echo number_format($totalTrans); ?></span></td>
-                        </tr>
+                            <td class="product-thumbnail"><a href="shop-product-details.html"><img alt="package" src="packages/<?php echo $image; ?>"></a></td>
+                            <td><a href="#"><?php echo $Title; ?></a></td>
+                            <td><?php echo $desc; ?></td>
+                            <td><span class="amount">₱ <?php echo number_format($totalTrans); ?></span></td>
+                          </tr>
                         <?php
 
                         }
@@ -237,10 +249,10 @@
                         $descServices = $rowPackage['Description'];
                         $servicesTotal = $rowPackage['Price'];
                         
-                        $selectAllTransaction = mysqli_query($connection, "SELECT * FROM transaction WHERE clientID = '$clientID' and productID = '$proID'");
+                        $selectAllTransaction = mysqli_query($connection, "SELECT * FROM finalorder WHERE clientID = '$clientID'");
                         while($totalTransactions = mysqli_fetch_assoc($selectAllTransaction)) {
                           $quantity = $totalTransactions['quantity'];
-                          $totalTrans = $totalTransactions['total'];
+                          $totalTrans = $totalTransactions['orderTotal'];
                           ?>
                           <tr>
                           <td class="product-thumbnail"><a href=""><?php echo $TitleServices ; ?></a></td>                
@@ -280,6 +292,7 @@
                   <div class="col-sm w-100 p-3 text-right"><h5 class="text-dark">Order Total: </h5></div>
                   <div class="col-sm d-flex justify-content-center align-items-center border bg-theme-colored1"><h5 class="text-white">₱ <?php if(isset($total)) {echo number_format($total);} ?></h5></div>
                   <a href="deleteTransactionData.php?ID=<?php echo $ID; ?>" class="w-25 bg-theme-colored1 d-flex align-items-center"><div class="col-sm w-100 text-white d-flex justify-content-center">Cancel Order</div></a>
+                  <a href="receipt.php" class="w-25 bg-theme-colored2 d-flex align-items-center"><div class="col-sm w-100 text-white d-flex justify-content-center">View Receipt</div></a>
                 </div>
               </div>
 

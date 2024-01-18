@@ -65,7 +65,12 @@
         $exe = mysqli_query($connection, $insertDataOrder);
 
         if($insertDataOrder) {
-            header("Location: transactionDetails.php");
+            
+            $deleteTrans = mysqli_query($connection, "DELETE FROM transaction WHERE clientID = '$clientID'");
+            if($deleteTrans) {
+                header("Location: transactionDetails.php");
+            }
+            
         }
 
 

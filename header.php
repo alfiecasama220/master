@@ -50,7 +50,13 @@
                     <li class="menu-item"><a href="#">About us</a>
                       
                     </li>
-                    <li class="menu-item"><a href="#">Support</a>
+                    <?php 
+                      if(isset($_SESSION['logged'])) {
+                        ?>
+                    <li class="menu-item"><a href="transactionDetails.php">Receipt</a> 
+                      <?php } ?>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Support</a>
                       <ul class="dropdown">
                         <li><a href="#">About</a>
                           <ul class="dropdown">
@@ -183,7 +189,7 @@
                           </ul>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
 
                     
 

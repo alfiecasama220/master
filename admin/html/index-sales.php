@@ -143,7 +143,9 @@
                                                                 $amount = $rows['orderTotal'];
                                                                 $status = (int) $rows['status'];
 
-                                                            
+                                                                $firstName = substr(strtok($Fullname, " "), 0 , 1);
+                                                                $split = explode(" ", $Fullname);
+                                                                $splitFinal = substr($split[count($split) - 1], 0,1);
                                                         
                                                         ?>
 
@@ -154,7 +156,7 @@
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <div class="user-card">
                                                                     <div class="user-avatar user-avatar-sm bg-purple">
-                                                                        <span>AB</span>
+                                                                        <span><?php echo $firstName . $splitFinal;   ?></span>
                                                                     </div>
                                                                     <div class="user-name">
                                                                         <span class="tb-lead"><?php echo $Fullname; ?></span>

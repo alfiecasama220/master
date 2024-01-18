@@ -343,7 +343,7 @@
                           <tr class="cart_item">
                           <td class="product-remove"><a title="Remove this item" class="remove" href="deletePackageTransaction.php?ID=<?php echo $transID; 
                            ?>">×</a></td>
-                          <td class="product-thumbnail"><a href="#"><img alt="member" src="schedules/<?php echo $image; ?>"></a></td>
+                          <td class="product-thumbnail"><a href="#"><img alt="member" src="packages/<?php echo $image; ?>"></a></td>
                           <td class="product-name"><a href="#"><?php echo $title;  ?></a>
                             <ul class="variation">
                               <li class="variation-size"><span><?php echo $desc; ?></span></li>

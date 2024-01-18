@@ -18,14 +18,19 @@
                                     <span class="nk-menu-text">Dashboard</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
-                        
+                            <?php } ?>
+                            <?php 
+                            
+                            if(isset($_SESSION['loggedManager']) || isset($_SESSION['loggedStaff'])) {
+
+                            ?>
                             <li class="nk-menu-item">
                                 <a href="html/index-sales.php?status=2" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                     <span class="nk-menu-text">Sales Dashboard</span>
                                 </a>
                             </li><!-- .nk-menu-item -->
-                            <?php } ?>
+                            
                             <li class="nk-menu-item has-sub">
                                 <a href="#" class="nk-menu-link nk-menu-toggle">
                                     <span class="nk-menu-icon"><em class="icon ni ni-inbox-in-fill"></em></span>
@@ -59,9 +64,9 @@
                                     <li class="nk-menu-item">
                                         <a href="html/product-list.php" class="nk-menu-link"><span class="nk-menu-text">Products List</span></a>
                                     </li>
-                                    <li class="nk-menu-item">
+                                    <!-- <li class="nk-menu-item">
                                         <a href="html/product-details.php" class="nk-menu-link"><span class="nk-menu-text">Products Details</span></a>
-                                    </li>
+                                    </li> -->
                                 </ul><!-- .nk-menu-sub -->
                             </li><!-- .nk-menu-item -->
 
@@ -82,6 +87,8 @@
                                     </li> -->
                                 </ul><!-- .nk-menu-sub -->
                             </li><!-- .nk-menu-item -->
+                            
+                        <?php } ?>
                             
                             <li class="nk-menu-item has-sub">
                                 <a href="#" class="nk-menu-link nk-menu-toggle">

@@ -444,8 +444,11 @@
 
 var dateArray = [], totalArray = [], salesStatistics, chart;
 function updateVar() {
+var host = window.location.protocol + "//" + window.location.host + "/admin/read.php";
+
 async function getActivity() {
-  const uri = "http://localhost:8001/admin/read.php"
+
+  const uri = host
   const response = await fetch(uri)
   const data = await response.json()
     return data;

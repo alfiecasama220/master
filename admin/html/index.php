@@ -166,8 +166,10 @@
                                         </div><!-- .col -->
 
                                         <script>
+                                            var host = window.location.protocol + "//" + window.location.host + "/admin/read.php";
+                                            
                                             async function getData() {
-                                                const uri = "http://localhost:8001/admin/read.php"
+                                                const uri = host
                                                 const response = await fetch(uri)
                                                 const data = await response.json()
                                                 return data;
@@ -256,7 +258,7 @@
                                                                 <span class="tb-sub"><?php echo $date; ?></span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub tb-amount"><?php echo $total; ?><span>USD</span></span>
+                                                                <span class="tb-sub tb-amount"><?php echo $total; ?><span> PHP</span></span>
                                                             </div>
                                                             <div class="nk-tb-col">
                                                                 <span class="badge badge-dot badge-dot-xs <?php if(isset($paid) == true) { echo $style;} else {echo $style;} ?>"><?php if(isset($message)) {echo $message;} ?></span>

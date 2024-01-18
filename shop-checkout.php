@@ -187,7 +187,7 @@
                           $totalTrans = $totalTransactions['total'];
                           ?>
                           <tr>
-                          <td class="product-thumbnail"><a href="shop-product-details.html"><img alt="package" src="schedules/<?php echo $image; ?>"></a></td>
+                          <td class="product-thumbnail"><a href="shop-product-details.html"><img alt="package" src="packages/<?php echo $image; ?>"></a></td>
                           <td><a href="#"><?php echo $Title; ?>(<?php echo $quantity; ?>x)</a></td>
                           <td><?php echo $desc; ?></td>
                           <td><span class="amount">₱ <?php echo number_format($totalTrans); ?></span></td>
