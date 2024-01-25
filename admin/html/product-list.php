@@ -6,9 +6,11 @@
 
     if(isset($_POST['addProduct'])) {
         $productName = $_POST['productName'];
-        $description = $_POST['description'];
+        $description = htmlspecialchars($_POST['description']);
         $category = $_POST['category'];
         $quantity = $_POST['quantity'];
+        $unitPrice = $_POST['unitPrice'];
+        $quantityOrder = $_POST['quantityOrder'];
         // $image  = $_FILES['image']['name'];
 
         // echo "<script>console.log('$productName' + ' ' + '$image')</script>";
@@ -20,7 +22,7 @@
 
         move_uploaded_file($tempFile, $upload.'/'.$pname);
 
-        $insert = mysqli_query($connection, "INSERT INTO inventory(image, productName, Description, Quantity, Category) values('$pname', '$productName' ,'$description', '$quantity', '$category')");
+        $insert = mysqli_query($connection, "INSERT INTO inventory(image, productName, Description, Quantity, Category, unitPrice, quantityOrder) values('$pname', '$productName' ,'$description', '$quantity', '$category', '$unitPrice', '$quantityOrder')");
         if($insert) {
             $url = $_SERVER['PHP_SELF'];
             header("Location: $url?msg=success");
@@ -130,6 +132,8 @@
                                                         <!-- <div class="nk-tb-col"><span>SKU</span></div> -->
                                                         <!-- <div class="nk-tb-col"><span>Price</span></div> -->
                                                         <div class="nk-tb-col"><span>Stock</span></div>
+                                                        <div class="nk-tb-col"><span>Unit Price</span></div>
+                                                        <div class="nk-tb-col"><span>Quantity to reorder</span></div>
                                                         <!-- <div class="nk-tb-col tb-col-md"><span>Category</span></div>
                                                         <div class="nk-tb-col tb-col-md"><em class="tb-asterisk icon ni ni-star-round"></em></div> -->
                                                         <div class="nk-tb-col nk-tb-col-tools">
@@ -161,6 +165,8 @@
                                                             $description = $rows['Description'];
                                                             $quantity = $rows['Quantity'];
                                                             $image = $rows['image'];
+                                                            $unitPrice = $rows['unitPrice'];
+                                                            $quantityOrder = $rows['quantityOrder'];
                                                     
                                                     ?>
                                                     
@@ -190,6 +196,12 @@
                                                         </div> -->
                                                         <div class="nk-tb-col">
                                                             <span class="tb-sub"><?php echo $quantity; ?></span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub"><?php echo $unitPrice; ?></span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub"><?php echo  $quantityOrder?></span>
                                                         </div>
                                                         <!-- <div class="nk-tb-col tb-col-md">
                                                             <span class="tb-sub">Case, Gadgets</span>
@@ -312,6 +324,22 @@
                                                     <label class="form-label" for="category">Quantity</label>
                                                     <div class="form-control-wrap">
                                                         <input type="text" class="form-control" name="quantity" id="category">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="category">Unit Price</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="unitPrice" id="category">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="category">Quantity to re-order</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="quantityOrder" id="category">
                                                     </div>
                                                 </div>
                                             </div>

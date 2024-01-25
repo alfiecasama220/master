@@ -61,7 +61,8 @@
 
         // echo $fullname . $email . $address . $apartmentData . $paymentMethodData;
         $status = true;
-        $insertDataOrder = "INSERT INTO finalorder(Fullname, Email, Address, ApartmentNum, message, orderTotal, paymentMethod, quantity , productID, servicesID, clientID, status) values('$fullname', '$email', '$address', '$apartmentData', '$messageData', '$totalOrder', '$paymentMethodData', '$quantity' , '$productID', '$servicesData', '$clientID', '$status')";
+        $ready = false;
+        $insertDataOrder = "INSERT INTO finalorder(Fullname, Email, Address, ApartmentNum, message, orderTotal, paymentMethod, quantity , productID, servicesID, clientID, status, ready) values('$fullname', '$email', '$address', '$apartmentData', '$messageData', '$totalOrder', '$paymentMethodData', '$quantity' , '$productID', '$servicesData', '$clientID', '$status', '$ready')";
         $exe = mysqli_query($connection, $insertDataOrder);
 
         if($insertDataOrder) {

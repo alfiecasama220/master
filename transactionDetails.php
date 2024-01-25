@@ -135,12 +135,14 @@
                   $selectAllOrder = mysqli_query($connection, "SELECT * FROM finalorder WHERE clientID = '$clientID' && status = '1'");
 
                   $proID = 0;
+                  $fullname = null;
                   if(mysqli_num_rows($selectAllOrder) > 0) {
                     
                     while($rows = mysqli_fetch_assoc($selectAllOrder)) {
                       $productID = $rows['productID'];
                       $productID = explode(",", $productID);
                       $total = $rows['orderTotal'];
+                      $_SESSION['parcelFullname'] = $rows['Fullname'];
 
                       $ID = $rows['id'];
 
@@ -287,12 +289,13 @@
                   </tbody>
                 </table>
 
+                
                 <div class="w-100 border d-flex">
                   <div class="col-sm"></div>
                   <div class="col-sm w-100 p-3 text-right"><h5 class="text-dark">Order Total: </h5></div>
                   <div class="col-sm d-flex justify-content-center align-items-center border bg-theme-colored1"><h5 class="text-white">₱ <?php if(isset($total)) {echo number_format($total);} ?></h5></div>
                   <a href="deleteTransactionData.php?ID=<?php echo $ID; ?>" class="w-25 bg-theme-colored1 d-flex align-items-center"><div class="col-sm w-100 text-white d-flex justify-content-center">Cancel Order</div></a>
-                  <a href="receipt.php" class="w-25 bg-theme-colored2 d-flex align-items-center"><div class="col-sm w-100 text-white d-flex justify-content-center">View Receipt</div></a>
+                  <a href="parcelReceipt.php" class="w-25 bg-theme-colored2 d-flex align-items-center"><div class="col-sm w-100 text-white d-flex justify-content-center">View Receipt</div></a>
                 </div>
               </div>
 

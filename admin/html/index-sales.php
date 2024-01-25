@@ -5,6 +5,7 @@
     
         
         if(isset($_GET['mode'])) {
+            // $getID = $_SESSION['id'];
             if(isset($_GET['ID'])) {
                 $id = $_GET['ID'];
             }
@@ -24,8 +25,19 @@
                 $database = mysqli_query($connection, "UPDATE finalorder SET status = '$reject' WHERE id='$id'");
             }
 
+            if($mode == "ready") {
+                $ready = true;
+                $database = mysqli_query($connection, "UPDATE finalorder SET ready = '$ready' WHERE id='$id'");
+            }
+
+            if($mode == "processing") {
+                $ready = false;
+                $database = mysqli_query($connection, "UPDATE finalorder SET ready = '$ready' WHERE id='$id'");
+            }
+
             if($mode == "delete") {
-               $delete = mysqli_query($connection, "DELETE FROM finalorder WHERE id = '$id'");  
+               $delete = mysqli_query($connection, "DELETE FROM finalorder WHERE id = '$id'"); 
+ 
             }
             
         }
@@ -185,7 +197,9 @@
                                                                         <ul class="link-list-plain">
                                                                             <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "accept" . "&" . "ID=" .  $id; ?>">Accept</a></li>
                                                                             <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "reject" . "&" . "ID=" .  $id; ?>">Reject</a></li>
-                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "delete" ?>">Delete</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "delete"  . "&" . "ID=" .  $id; ?>">Delete</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "ready" . "&" .  "ID=" .  $id; ?>">Ready For Pickup</a></li>
+                                                                            <li><a href="<?php $status = $_GET['status']; echo $_SERVER['PHP_SELF'] . "?status=" . "$status" . "&" . "mode=" . "processing" . "&" .  "ID=" .  $id; ?>">Processing</a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
